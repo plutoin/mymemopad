@@ -1,0 +1,186 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page
+	import="java.io.PrintWriter, java.util.ArrayList, java.net.URLEncoder"%>
+<%@ page import="user.*,memo.*"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>My Memopad</title>
+<!-- bootstrap CSS 추가 -->
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<!-- custom CSS 추가 -->
+<link rel="stylesheet" href="./css/custom.css">
+</head>
+<body>
+	<%
+	request.setCharacterEncoding("UTF-8"); // 한글 안 깨지도록 설정
+	String memoDivide = "전체";
+	String searchType = "최신순";
+	String search = "";
+	int pageNumber = 0;
+
+	if (request.getParameter("memoDivide") != null)
+		memoDivide = request.getParameter("memoDivide");
+	if (request.getParameter("searchType") != null)
+		searchType = request.getParameter("searchType");
+	if (request.getParameter("search") != null)
+		search = request.getParameter("search");
+	if (request.getParameter("pageNumber") != null)
+		try {
+			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+		} catch (Exception e) {
+			System.out.println("검색 페이지 번호 오류");
+
+		}
+	String userID = null;
+	if (session.getAttribute("userID") != null) { 	// userID 이름으로 세션이 존재하는 회원들은 
+		userID = (String) session.getAttribute("userID"); // userID에 해당 세션값을 넣어 줌
+	}
+	if (userID == null) { // 로그인 안 돼 있는 경우
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인하세요.');");
+		script.println("location.href = 'userLogin.jsp';");
+		script.println("</script>");
+		script.close();
+		return;
+	}
+	%>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="main.jsp">My Memopad</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div id="navbar" class="collapse navbar-collapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="main.jsp">메인</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="  ">소개</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link text-primary" href="userLogout.jsp">로그아웃</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<section class="container">
+		<form method="get" action="./main.jsp" class="form-inline mt-3">
+			<select name="memoDivide" class="form-control mx-1 mt-2">
+				<!-- 탭 분류  -->
+				<option value="전체">전체</option>
+				<option value="의류"
+					<%if (memoDivide.equals("의류"))out.println("selected");%>>의류</option>
+				<option value="음식"
+					<%if (memoDivide.equals("음식"))out.println("selected");%>>음식</option>
+				<option value="기타"
+					<%if (memoDivide.equals("기타"))out.println("selected");%>>기타</option>
+			</select>
+
+			<!-- 정렬 타입 -->
+			<select name="searchType" class="form-control mx-1 mt-2">
+				<option value="최신순">최신순</option>
+				<option value="추천순"
+					<%if (memoDivide.equals("중요도순"))out.println("selected");%>>중요도순</option>
+			</select> 
+			<input type="text" name="search" class="form-control mx-1 mt-2"
+				placeholder="내용을 입력하세요." />
+
+			<!-- 등록 버튼 -->
+			<button type="submit" class="btn btn-outline-primary mx-1 mt-2">검색</button>
+			<a class="btn btn-primary mx-1 mt-2" href="write.jsp">메모 +</a>
+			<a class="btn btn-primary mx-1 mt-2" data-toggle="modal" href="#tabModal">카테고리 +</a>
+		</form>
+
+		<!-- DB에 저장된 메모 불러오기(MemoDAO 참고) -->
+		<%
+	 	ArrayList<Memo> memoList = new MemoDAO().getList(memoDivide, userID, searchType, search, pageNumber);
+		//System.out.print("mList >>>  ");
+		//System.out.println(memoList);
+		//ArrayList<Memo> memoList = new MemoDAO().getMemo(userID, searchType, pageNumber);
+
+		if (memoList != null)
+			for (int i = 0; i < memoList.size(); i++) {
+				if (i == memoList.size()) {
+					break;	
+				}
+				Memo memo = memoList.get(i);
+		%>
+
+		<!-- 화면에 보여지는 메모 스타일 -->
+		<!--<div class="card bg-light mt-3">  -->
+		<div class="card bg-light mt-3" style="width: auto; height: 250px;">
+			<div class="card-header bg-light">
+				<div class="row">
+					<div class="col-8 text-left"><%=memo.getMemoDivide()%>&nbsp;
+					</div>
+					<div class="col-4 text-right">
+						평가 <span style="color: red;"><%=memo.getTotalScore()%></span> 
+						중요도 <span style="color: red;"><%=memo.getImportantScore()%></span>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">
+					<a href="view.jsp?memoID=<%=memoList.get(i).getMemoID()%>"><%=memoList.get(i).getMemoTitle()%>&nbsp;</a>
+				</h5>
+				<p class="card-text" id="text"><%=memo.getMemoContent().replaceAll("\r\n", "<br>")%></p>
+				<div class="row">
+					<!-- 	<div class="col-12 text-right">
+							<a href="./update.jsp?memoID=<%=memo.getMemoID()%>">수정</a>
+							<a onclick="return confirm('삭제하시겠습니까?')"
+								href="./deleteAction.jsp?memoID=<%=memo.getMemoID()%>">삭제</a> -->
+				</div>
+
+			</div>
+		</div>
+
+		<%
+		}
+		%>
+	</section>
+
+	<!-- 카테고리 추가하기 화면 -->
+	<div class="modal fade" id="tabModal" tabindex="-1" role="dialog"
+		aria-labelledby="modal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modal">카테고리 추가</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="./addTab.jsp" method="post">
+						<div class="form-group">
+							<label>카테고리 이름</label> <input type="text" name="tabTitle"
+								class="form-control" maxlength="50">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">취소</button>
+							<button type="submit" class="btn btn-primary">등록하기</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
+		Copyright &copy; 2021 DCU Capstone 04 Rights Reserved.
+	</footer>
+	<!-- jQuery 추가 -->
+	<script src="./js/jquery.min.js"></script><!-- pooper 추가 -->
+<!-- 	<script src="./js/popper.js"></script> -->
+	<!-- bootstrap.js 추가 -->
+	<script src="./js/bootstrap.min.js"></script>
+</body>
+</html>
