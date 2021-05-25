@@ -48,7 +48,7 @@
 
 	<div class="container">
 		<div class="row">
-			<table class="table mt-3"
+			<table class="table mt-5"
 				style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>

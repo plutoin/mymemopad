@@ -21,11 +21,10 @@ request.setCharacterEncoding("UTF-8");
 	
 	
 	String tabName = null;
-	
 	if(request.getParameter("tabName") != null)
 		tabName = request.getParameter("tabName");
 	
-	if(tabName.equals("")) {
+/* 	if(memoDivide == null || memoDivide.equals("")){
 		// 하나라도 입력 안 된 사항 있을 때
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -34,10 +33,10 @@ request.setCharacterEncoding("UTF-8");
 		script.println("</script>");
 		script.close();
 		return;
-	}
+	} */
 	
 	TabDAO tabDAO = new TabDAO();
-	int result = tabDAO.add(new Tab(userID, tabName));
+	int result = tabDAO.add(userID, tabName);
 	if(result == -1) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -49,6 +48,7 @@ request.setCharacterEncoding("UTF-8");
 	} else {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
+		script.println("alert('추가되었습니다.');");
 		script.println("location.href = 'main.jsp'");
 		script.println("</script>");
 		script.close();

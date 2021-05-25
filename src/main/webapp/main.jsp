@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page
 	import="java.io.PrintWriter, java.util.ArrayList, java.net.URLEncoder"%>
-<%@ page import="user.*,memo.*"%>
+<%@ page import="memo.*, util.*, tab.*, user.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +34,6 @@
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		} catch (Exception e) {
 			System.out.println("검색 페이지 번호 오류");
-
 		}
 	String userID = null;
 	if (session.getAttribute("userID") != null) { 	// userID 이름으로 세션이 존재하는 회원들은 
@@ -58,21 +57,19 @@
 		</button>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="main.jsp">메인</a>
+				<li class="nav-item active"><a class="nav-link" href="main.jsp">메인</a>
 				</li>
-				<li class="nav-item active">
-					<a class="nav-link" href="  ">소개</a>
+				<li class="nav-item active"><a class="nav-link" href="  ">소개</a>
 				</li>
-				<li class="nav-item active">
-					<a class="nav-link text-primary" href="userLogout.jsp">로그아웃</a>
-				</li>
+				<li class="nav-item active"><a class="nav-link text-primary"
+					href="userLogout.jsp">로그아웃</a></li>
 			</ul>
 		</div>
 	</nav>
 	<section class="container">
 		<form method="get" action="./main.jsp" class="form-inline mt-3">
-			<select name="memoDivide" class="form-control mx-1 mt-2">
+			<select name="memoDivide" class="form-control mx-1 mt-2"
+				id="category">
 				<!-- 탭 분류  -->
 				<option value="전체">전체</option>
 				<option value="의류"
@@ -88,14 +85,14 @@
 				<option value="최신순">최신순</option>
 				<option value="추천순"
 					<%if (memoDivide.equals("중요도순"))out.println("selected");%>>중요도순</option>
-			</select> 
-			<input type="text" name="search" class="form-control mx-1 mt-2"
+			</select> <input type="text" name="search" class="form-control mx-1 mt-2"
 				placeholder="내용을 입력하세요." />
 
-			<!-- 등록 버튼 -->
+			<!-- 버튼 -->
 			<button type="submit" class="btn btn-outline-primary mx-1 mt-2">검색</button>
-			<a class="btn btn-primary mx-1 mt-2" href="write.jsp">메모 +</a>
-			<a class="btn btn-primary mx-1 mt-2" data-toggle="modal" href="#tabModal">카테고리 +</a>
+			<a class="btn btn-primary mx-1 mt-2" href="write.jsp">메모 +</a> <a
+				class="btn btn-primary mx-1 mt-2" data-toggle="modal"
+				href="#tabModal">카테고리 편집</a>
 		</form>
 
 		<!-- DB에 저장된 메모 불러오기(MemoDAO 참고) -->
@@ -121,8 +118,8 @@
 					<div class="col-8 text-left"><%=memo.getMemoDivide()%>&nbsp;
 					</div>
 					<div class="col-4 text-right">
-						평가 <span style="color: red;"><%=memo.getTotalScore()%></span> 
-						중요도 <span style="color: red;"><%=memo.getImportantScore()%></span>
+						평가 <span style="color: red;"><%=memo.getTotalScore()%></span> 중요도
+						<span style="color: red;"><%=memo.getImportantScore()%></span>
 					</div>
 				</div>
 			</div>
@@ -137,10 +134,8 @@
 							<a onclick="return confirm('삭제하시겠습니까?')"
 								href="./deleteAction.jsp?memoID=<%=memo.getMemoID()%>">삭제</a> -->
 				</div>
-
 			</div>
 		</div>
-
 		<%
 		}
 		%>
@@ -152,7 +147,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="modal">카테고리 추가</h5>
+					<h5 class="modal-title" id="modal">카테고리 편집</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -160,27 +155,57 @@
 				</div>
 				<div class="modal-body">
 					<form action="./addTab.jsp" method="post">
-						<div class="form-group">
-							<label>카테고리 이름</label> <input type="text" name="tabTitle"
-								class="form-control" maxlength="50">
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
+						<div class="form-group mt-2">
+							<label>카테고리 추가</label> <input type="text" name="tabName" class="form-control" maxlength="50">
+							<button type="button" class="btn btn-secondary mt-2"
 								data-dismiss="modal">취소</button>
-							<button type="submit" class="btn btn-primary">등록하기</button>
+							<button type="submit" class="btn btn-primary mt-2" id="addTab">추가</button>
 						</div>
 					</form>
+					<form action="./deleteTab.jsp" method="post">
+						<div class="form-group mt-4">
+							<label>카테고리 삭제</label>
+<%-- DB값 드롭다운으로 부르기	<%
+							for (int i = 0; i < tabList.size(); i++) {
+							%>
+							<select name="tabName" class="form-control">
+								<option value="의류" selected><%=tabList.get(i).getTabName()%>&nbsp;</option>
+							</select>
+							<%
+							}
+							%> --%>
+							<select name="tabName" class="form-control">
+							<option value="의류">의류</option>
+							<option value="음식">음식</option>
+							<option value="기타">기타</option>
+							</select>
+							<button type="button" class="btn btn-secondary mt-2"
+							data-dismiss="modal">취소</button>
+						<button type="submit" class="btn btn-primary mt-2">삭제</button>
+						
+<%-- 						<select name="tabName" class="form-control">
+							<option value=""></option>
+							<%
+								Tab tab = new Tab;
+							%>
+							<option value=<%=tab.getTabName()%>><%=tab.getTabName()%></option>
+							<option value="기타">기타</option>
+							</select> --%>
+							
+						</div>
+						</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
-		Copyright &copy; 2021 DCU Capstone 04 Rights Reserved.
-	</footer>
+	<footer class="bg-dark mt-4 p-4 text-center" style="color: #FFFFFF;">
+		Copyright &copy; 2021 DCU Capstone Team 04 Rights Reserved.</footer>
 	<!-- jQuery 추가 -->
-	<script src="./js/jquery.min.js"></script><!-- pooper 추가 -->
-<!-- 	<script src="./js/popper.js"></script> -->
+	<script src="js/jquery.min.js"></script>
+	<!-- pooper 추가 -->
+	<script src="js/popper.min.js"></script>
 	<!-- bootstrap.js 추가 -->
-	<script src="./js/bootstrap.min.js"></script>
+
+	<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

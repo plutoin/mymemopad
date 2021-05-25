@@ -29,7 +29,8 @@
 			<form action="./writeAction.jsp" method="post">
 				<div class="form-row">
 					<div class="form-group col-sm-4">
-						<label>그룹</label> <select name="memoDivide" class="form-control">
+						<label>그룹</label> 
+						<select name="memoDivide" class="form-control">
 							<option value="의류" selected>의류</option>
 							<option value="음식">음식</option>
 							<option value="기타">기타</option>
@@ -106,15 +107,6 @@
 							});
 				});
 	</script> -->
-	<script>
-	function autolink(text) {
-	    var container = document.getElementById(text);
-	    var doc = container.innerHTML;
-	    var regURL = new RegExp("(http|https|ftp|telnet|news|irc)://([-/.a-zA-Z0-9_~#%$?&=:200-377()]+)","gi");
-	    var regEmail = new RegExp("([xA1-xFEa-z0-9_-]+@[xA1-xFEa-z0-9-]+\.[a-z0-9-]+)","gi");
-	    container.innerHTML = doc.replace(regURL,"<a href='$1://$2' target='_blank'>$1://$2</a>").replace(regEmail,"<a href='mailto:$1'>$1</a>");
-	}
-	</script>
 	<!-- jQuery 추가 -->
 	<script src="./js/jquery.min.js"></script>
 	<!-- pooper 추가 -->

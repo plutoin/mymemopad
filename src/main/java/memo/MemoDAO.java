@@ -49,11 +49,9 @@ public class MemoDAO {
 		ResultSet rs = null;
 		try {
 			if(searchType.equals("최신순")) {
-				sql = "SELECT * FROM MEMOTABLE WHERE userID = ? AND memoDivide LIKE ? AND CONCAT(memoTitle, memoContent) LIKE "
-						+ "? ORDER BY memoID DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6;
+				sql = "SELECT * FROM MEMOTABLE WHERE userID = ? AND memoDivide LIKE ? AND CONCAT(memoTitle, memoContent) LIKE ? ORDER BY memoID DESC;";
 			} else if (searchType.equals("중요도순")) {
-				sql = "SELECT * FROM MEMOTABLE WHERE userID = ? AND memoDivide LIKE ? AND CONCAT(memoTitle, memoContent) LIKE "
-						+ "? ORDER BY importantScore DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6;
+				sql = "SELECT * FROM MEMOTABLE WHERE userID = ? AND memoDivide LIKE ? AND CONCAT(memoTitle, memoContent) LIKE ? ORDER BY importantScore DESC;";
 			}
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
