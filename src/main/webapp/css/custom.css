@@ -16,8 +16,7 @@ h5 {
 body {
 	font-family: 'Nanum Gothic';
 }
-
-.card {
+/* .card {
 	word-wrap: break-word;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -29,4 +28,4 @@ body {
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
-}
+} */

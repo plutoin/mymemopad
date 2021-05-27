@@ -59,7 +59,7 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link" href="main.jsp">메인</a>
 				</li>
-				<li class="nav-item active"><a class="nav-link" href="  ">소개</a>
+				<li class="nav-item active"><a class="nav-link" href="intro.jsp">소개</a>
 				</li>
 				<li class="nav-item active"><a class="nav-link text-primary"
 					href="userLogout.jsp">로그아웃</a></li>
@@ -112,7 +112,7 @@
 
 		<!-- 화면에 보여지는 메모 스타일 -->
 		<!--<div class="card bg-light mt-3">  -->
-		<div class="card bg-light mt-3" style="width: auto; height: 250px;">
+		<div class="card bg-light mt-3" style="height: 250px;">
 			<div class="card-header bg-light">
 				<div class="row">
 					<div class="col-8 text-left"><%=memo.getMemoDivide()%>&nbsp;
@@ -205,7 +205,6 @@
 	<!-- pooper 추가 -->
 	<script src="js/popper.min.js"></script>
 	<!-- bootstrap.js 추가 -->
-
 	<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
