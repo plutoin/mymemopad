@@ -66,6 +66,14 @@
 						<td colspan="2" style="min-height: 200px; text-align: left;"><%=memo.getMemoContent().replaceAll("\r\n", "<br>")%></td>
 					</tr>
 					<tr>
+						<td>URL</td>
+						<td colspan="2" style="min-height: 200px; text-align: left;">
+							<a href="<%=memo.getMemoURL().replaceAll("\r\n", "<br>")%>">
+								<%=memo.getMemoURL().replaceAll("\r\n", "<br>")%>
+							</a>
+						</td>
+					</tr>
+					<tr>
 						<td>평가</td>
 						<td colspan="2" style="text-align: left;"><%=memo.getTotalScore()%></td>
 					</tr>
@@ -76,15 +84,16 @@
 				</tbody>
 			</table>
 			<a href="main.jsp" class="btn btn-primary">목록</a> <a
-				href="update.jsp?memoID=<%=memo.getMemoID()%>" class="btn btn-primary mx-2">수정</a>
-			<a href="deleteAction.jsp?memoID=<%=memo.getMemoID()%>" class="btn btn-primary"
-				onclick="return confirm('삭제하시겠습니까?')">삭제</a>
+				href="update.jsp?memoID=<%=memo.getMemoID()%>"
+				class="btn btn-primary mx-2">수정</a> <a
+				href="deleteAction.jsp?memoID=<%=memo.getMemoID()%>"
+				class="btn btn-primary" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
 		</div>
 	</div>
 	<!-- jQuery 추가 -->
 	<script src="./js/jquery.min.js"></script>
 	<!-- pooper 추가 -->
-<!-- 	<script src="./js/popper.js"></script> -->
+	<!-- 	<script src="./js/popper.js"></script> -->
 	<!-- bootstrap.js 추가 -->
 	<script src="./js/bootstrap.min.js"></script>
 </body>

@@ -8,13 +8,14 @@ public class Memo {
 	String memoContent;	// 메모 내용
 	String totalScore;	// 점수
 	String importantScore;	// 중요도
+	String memoURL;
 	
 	public Memo() {
 		
 	}
 	
 	public Memo(int memoID, String userID, String memoDivide, String memoTitle, String memoContent,
-			String totalScore, String importantScore) {
+			String totalScore, String importantScore, String memoURL) {
 		super();
 		this.memoID = memoID;
 		this.userID = userID;
@@ -23,6 +24,7 @@ public class Memo {
 		this.memoContent = memoContent;
 		this.totalScore = totalScore;
 		this.importantScore = importantScore;
+		this.memoURL = memoURL;
 	}
 	
 	public Memo(String userID) {
@@ -84,6 +86,16 @@ public class Memo {
 	public void setImportantScore(String importantScore) {
 		this.importantScore = importantScore;
 	}
+	
+	public String getMemoURL() {
+		return memoURL;
+	}
+
+	public void setMemoURL(String memoURL) {
+		this.memoURL = memoURL;
+	}
+	
+	
 
 	@Override
 	public String toString() {

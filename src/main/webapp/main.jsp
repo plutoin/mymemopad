@@ -59,8 +59,8 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link" href="main.jsp">메인</a>
 				</li>
-				<li class="nav-item active"><a class="nav-link" href="intro.jsp">소개</a>
-				</li>
+				<li class="nav-item active"><a class="nav-link"
+					href="intro.jsp">소개</a></li>
 				<li class="nav-item active"><a class="nav-link text-primary"
 					href="userLogout.jsp">로그아웃</a></li>
 			</ul>
@@ -72,20 +72,33 @@
 				id="category">
 				<!-- 탭 분류  -->
 				<option value="전체">전체</option>
-				<option value="의류"
-					<%if (memoDivide.equals("의류"))out.println("selected");%>>의류</option>
-				<option value="음식"
-					<%if (memoDivide.equals("음식"))out.println("selected");%>>음식</option>
-				<option value="기타"
-					<%if (memoDivide.equals("기타"))out.println("selected");%>>기타</option>
+				<%
+				 	ArrayList<Tab> tabList1 = new TabDAO().getTabNameList(userID);
+			
+					if (tabList1.size() > 0){
+						for (int i = 0; i < tabList1.size(); i++) {
+							Tab tab = tabList1.get(i);
+				%>
+				<option value=<%=tab.getTabName()%>
+					<%if (tab.getTabName().equals(memoDivide))out.println("selected");%>>
+					<%=tab.getTabName()%>
+				</option>
+				<%
+						}
+					}
+				%>
 			</select>
 
 			<!-- 정렬 타입 -->
 			<select name="searchType" class="form-control mx-1 mt-2">
-				<option value="최신순">최신순</option>
-				<option value="추천순"
-					<%if (memoDivide.equals("중요도순"))out.println("selected");%>>중요도순</option>
-			</select> <input type="text" name="search" class="form-control mx-1 mt-2"
+				<option value="최신순"
+					<%if (searchType.equals("최신순"))out.println("selected");%>>최신순</option>
+				<option value="중요도순"
+					<%if (searchType.equals("중요도순"))out.println("selected");%>>중요도순</option>
+				<option value="평가점수순"
+					<%if (searchType.equals("평가점수순"))out.println("selected");%>>평가점수순</option>
+			</select> 
+			<input type="text" name="search" class="form-control mx-1 mt-2"
 				placeholder="내용을 입력하세요." />
 
 			<!-- 버튼 -->
@@ -98,9 +111,6 @@
 		<!-- DB에 저장된 메모 불러오기(MemoDAO 참고) -->
 		<%
 	 	ArrayList<Memo> memoList = new MemoDAO().getList(memoDivide, userID, searchType, search, pageNumber);
-		//System.out.print("mList >>>  ");
-		//System.out.println(memoList);
-		//ArrayList<Memo> memoList = new MemoDAO().getMemo(userID, searchType, pageNumber);
 
 		if (memoList != null)
 			for (int i = 0; i < memoList.size(); i++) {
@@ -156,7 +166,8 @@
 				<div class="modal-body">
 					<form action="./addTab.jsp" method="post">
 						<div class="form-group mt-2">
-							<label>카테고리 추가</label> <input type="text" name="tabName" class="form-control" maxlength="50">
+							<label>카테고리 추가</label> <input type="text" name="tabName"
+								class="form-control" maxlength="50">
 							<button type="button" class="btn btn-secondary mt-2"
 								data-dismiss="modal">취소</button>
 							<button type="submit" class="btn btn-primary mt-2" id="addTab">추가</button>
@@ -164,8 +175,31 @@
 					</form>
 					<form action="./deleteTab.jsp" method="post">
 						<div class="form-group mt-4">
-							<label>카테고리 삭제</label>
-<%-- DB값 드롭다운으로 부르기	<%
+							<label>카테고리 삭제</label> <select name="tabName"
+								class="form-control">
+								<%
+								ArrayList<Tab> tabList = new TabDAO().getTabNameList(userID);
+
+								if (tabList.size() > 0) {
+									for (int i = 0; i < tabList.size(); i++) {
+										Tab tab = tabList.get(i);
+								%>
+								<option value=<%=tab.getTabName()%>><%=tab.getTabName()%></option>
+								<%
+								}
+								}
+								%>
+							</select>
+							<!-- 							<select name="tabName" class="form-control">
+							<option value="의류">의류</option>
+							<option value="음식">음식</option>
+							<option value="기타">기타</option>
+							</select> -->
+							<button type="button" class="btn btn-secondary mt-2"
+								data-dismiss="modal">취소</button>
+							<button type="submit" class="btn btn-primary mt-2">삭제</button>
+
+							<%-- DB값 드롭다운으로 부르기	<%
 							for (int i = 0; i < tabList.size(); i++) {
 							%>
 							<select name="tabName" class="form-control">
@@ -174,26 +208,10 @@
 							<%
 							}
 							%> --%>
-							<select name="tabName" class="form-control">
-							<option value="의류">의류</option>
-							<option value="음식">음식</option>
-							<option value="기타">기타</option>
-							</select>
-							<button type="button" class="btn btn-secondary mt-2"
-							data-dismiss="modal">취소</button>
-						<button type="submit" class="btn btn-primary mt-2">삭제</button>
-						
-<%-- 						<select name="tabName" class="form-control">
-							<option value=""></option>
-							<%
-								Tab tab = new Tab;
-							%>
-							<option value=<%=tab.getTabName()%>><%=tab.getTabName()%></option>
-							<option value="기타">기타</option>
-							</select> --%>
-							
+
+
 						</div>
-						</form>
+					</form>
 				</div>
 			</div>
 		</div>

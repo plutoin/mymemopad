@@ -128,18 +128,27 @@ public class TabDAO {
 	}
 	
 	// 카테고리 이름 불러오는 함수
-	public String getTabName(String tabName) {	
-		String sql = "SELECT tabName FROM TAB WHERE tabName = ?;";
+	public ArrayList<Tab> getTabNameList(String userID) {	
+		ArrayList<Tab> tabList = new ArrayList<Tab>();
+		String sql = "SELECT tabName FROM tab WHERE userID=?;";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, tabName);
+			pstmt.setString(1, userID);
 			rs = pstmt.executeQuery();
-			if(rs.next())
-				return rs.getString(1);
+//			if(rs.next())
+//				return rs.getString(1);
+			while(rs.next()) {
+				Tab tab = new Tab();
+				tab.setTabName(rs.getString(1));
+				
+				tabList.add(tab);
+			}
+			
+			
 		} catch(Exception e) {	// 예외 처리
 			e.printStackTrace();
 		} finally {
@@ -150,7 +159,7 @@ public class TabDAO {
 			try { if(rs != null) rs.close(); }
 			catch (Exception e) { e.printStackTrace(); }
 		}
-		return null; 
+		return tabList; 
 	}
 	
 }

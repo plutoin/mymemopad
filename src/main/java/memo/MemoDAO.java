@@ -14,7 +14,7 @@ public class MemoDAO {
 
 	// 메모 쓴 것 DB에 저장하는 함수
 	public int write (Memo memo) {	
-		String sql = "INSERT INTO MEMOTABLE VALUES(NULL, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO MEMOTABLE VALUES(NULL, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -24,6 +24,7 @@ public class MemoDAO {
 			pstmt.setString(4, memo.getMemoContent().replaceAll("<", "&lt;").replaceAll(">", "&gt;"));
 			pstmt.setString(5, memo.getTotalScore().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
 			pstmt.setString(6, memo.getImportantScore().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
+			pstmt.setString(7, memo.getMemoURL().replaceAll("<", "&lt;").replaceAll(">", "&gt;"));
 			return pstmt.executeUpdate();
 		} catch(Exception e) {	// 예외 처리
 			e.printStackTrace();
@@ -52,6 +53,8 @@ public class MemoDAO {
 				sql = "SELECT * FROM MEMOTABLE WHERE userID = ? AND memoDivide LIKE ? AND CONCAT(memoTitle, memoContent) LIKE ? ORDER BY memoID DESC;";
 			} else if (searchType.equals("중요도순")) {
 				sql = "SELECT * FROM MEMOTABLE WHERE userID = ? AND memoDivide LIKE ? AND CONCAT(memoTitle, memoContent) LIKE ? ORDER BY importantScore DESC;";
+			} else if (searchType.equals("평가점수순")) {
+				sql = "SELECT * FROM MEMOTABLE WHERE userID = ? AND memoDivide LIKE ? AND CONCAT(memoTitle, memoContent) LIKE ? ORDER BY totalScore DESC;";
 			}
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -68,7 +71,8 @@ public class MemoDAO {
 						rs.getString(4),
 						rs.getString(5),
 						rs.getString(6),
-						rs.getString(7)
+						rs.getString(7),
+						rs.getString(8)
 				);
 				memoList.add(memo);
 			}
@@ -84,46 +88,6 @@ public class MemoDAO {
 		}
 		return memoList;	// DB 오류
 	}
-	
-/*	public ArrayList<Memo> getMemo(String userID, String searchType, int pageNumber) { 
-		ArrayList<Memo> memoList = null; 
-		String sql = ""; 
-		Connection conn = null; 
-		PreparedStatement pstmt = null; 
-		ResultSet rs = null; 
-		try { 
-			sql = "SELECT * FROM MEMOTABLE WHERE userID = ? ORDER BY memoID DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6; 
-			// 최신순 중요도순 있었는데 지워 둠 
-			conn = DatabaseUtil.getConnection(); 
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userID); 
-			rs = pstmt.executeQuery(); 
-			memoList = new ArrayList<Memo>(); 
-			while(rs.next()) { 
-				Memo memo = new Memo( 
-						rs.getInt(1),	  
-						rs.getString(2),
-						rs.getString(3), 
-						rs.getString(4), 
-						rs.getString(5),
-						rs.getString(6),
-						rs.getString(7) 
-						); 
-				memoList.add(memo); 
-				} 
-			} catch(Exception e) { // 예외 처리 
-				e.printStackTrace(); 
-			} finally {
-				try { if(conn != null) conn.close(); }
-				catch (Exception e) { e.printStackTrace(); }
-				try { if(pstmt != null) pstmt.close(); }
-				catch (Exception e) { e.printStackTrace(); }
-				try { if(rs != null) rs.close(); }
-				catch (Exception e) { e.printStackTrace(); }
-			}
-		return memoList; //데이터베이스 오류 
-		}
-*/
 	
 	// DB에서 메모 삭제 함수
 	public int delete(String memoID) {	
@@ -193,6 +157,7 @@ public class MemoDAO {
 				memo.setMemoContent(rs.getString(5));
 				memo.setTotalScore(rs.getString(6));
 				memo.setImportantScore(rs.getString(7));
+				memo.setMemoURL(rs.getString(8));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -232,7 +197,7 @@ public class MemoDAO {
 	// 수정 함수
 	public int update(Memo memo) {
 		// 특정 memoID에 해당하는 내용 바꾸기
-		String sql = "UPDATE MEMOTABLE SET memoTitle = ?, memoContent = ?, memoDivide = ?, totalScore = ?, importantScore = ? WHERE memoID = ?;";
+		String sql = "UPDATE MEMOTABLE SET memoTitle = ?, memoContent = ?, memoDivide = ?, totalScore = ?, importantScore = ?, memoURL = ? WHERE memoID = ?;";
 		try {
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -242,8 +207,29 @@ public class MemoDAO {
 			pstmt.setString(3, memo.getMemoDivide()); // 게시글 분류
 			pstmt.setString(4, memo.getTotalScore()); 
 			pstmt.setString(5, memo.getImportantScore());
-			pstmt.setInt(6, memo.getMemoID()); // 게시글 번호
+			pstmt.setString(6, memo.getMemoURL());
+			pstmt.setInt(7, memo.getMemoID()); // 게시글 번호
 			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터베이스 오류발생
+	}
+	
+	// 구분별 갯수 구하기
+	public int countDivide(String divide) {
+		String sql = "SELECT COUNT(*) FROM memotable WHERE memoDivide = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DatabaseUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, divide);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

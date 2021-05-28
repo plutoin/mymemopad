@@ -50,48 +50,68 @@
 			<form action="updateAction.jsp?memoID=<%=memoID%> " method="post">
 				<div class="form-row">
 					<div class="form-group col-sm-4">
-						<label>그룹</label> <select name="memoDivide" id="memoDivideSelect" class="form-control">
-							<option value="의류"<%=memo.getMemoDivide().equals("의류")?" selected":""%>>의류</option>
-							<option value="음식"<%=memo.getMemoDivide().equals("음식")?" selected":""%>>음식</option>
-							<option value="기타"<%=memo.getMemoDivide().equals("기타")?" selected":""%>>기타</option>
+						<label>그룹</label> <select name="memoDivide" id="memoDivideSelect"
+							class="form-control">
+							<option value="의류"
+								<%=memo.getMemoDivide().equals("의류") ? " selected" : ""%>>의류</option>
+							<option value="음식"
+								<%=memo.getMemoDivide().equals("음식") ? " selected" : ""%>>음식</option>
+							<option value="기타"
+								<%=memo.getMemoDivide().equals("기타") ? " selected" : ""%>>기타</option>
 						</select>
-<!-- 						<input id="memoDivideInput" name="memoDivide" hidden="hidden"> -->
+						<!-- 						<input id="memoDivideInput" name="memoDivide" hidden="hidden"> -->
 					</div>
 				</div>
 				<div class="form-group">
-					<label>제목</label> <input type="text" name="memoTitle" value="<%=memo.getMemoTitle()%>"
-						class="form-control" maxlength="50">
+					<label>제목</label> <input type="text" name="memoTitle"
+						value="<%=memo.getMemoTitle()%>" class="form-control"
+						maxlength="50">
 				</div>
 				<div class="form-group">
 					<label>내용</label>
 					<textarea name="memoContent" class="form-control" maxlength="2048"
-						style="height: 180px;"><%=memo.getMemoContent().replaceAll("<br>","\r\n")%></textarea>
+						style="height: 200px;"><%=memo.getMemoContent().replaceAll("<br>", "\r\n")%></textarea>
+				</div>
+				<div class="form-group">
+					<label>내용</label>
+					<textarea name="memoURL" class="form-control" maxlength="1000"
+						style="height: 100px;"><%=memo.getMemoURL().replaceAll("<br>", "\r\n")%></textarea>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-sm-3">
 						<label>점수</label> <select name="totalScore" class="form-control">
-							<option value="5"<%=memo.getTotalScore().equals("5")?" selected":""%>>5</option>
-							<option value="4"<%=memo.getTotalScore().equals("4")?" selected":""%>>4</option>
-							<option value="3"<%=memo.getTotalScore().equals("3")?" selected":""%>>3</option>
-							<option value="2"<%=memo.getTotalScore().equals("2")?" selected":""%>>2</option>
-							<option value="1"<%=memo.getTotalScore().equals("1")?" selected":""%>>1</option>
+							<option value="5"
+								<%=memo.getTotalScore().equals("5") ? " selected" : ""%>>5</option>
+							<option value="4"
+								<%=memo.getTotalScore().equals("4") ? " selected" : ""%>>4</option>
+							<option value="3"
+								<%=memo.getTotalScore().equals("3") ? " selected" : ""%>>3</option>
+							<option value="2"
+								<%=memo.getTotalScore().equals("2") ? " selected" : ""%>>2</option>
+							<option value="1"
+								<%=memo.getTotalScore().equals("1") ? " selected" : ""%>>1</option>
 						</select>
 					</div>
 					<div class="form-group col-sm-3">
 						<label>중요도</label> <select name="importantScore"
 							class="form-control">
-							<option value="5"<%=memo.getImportantScore().equals("5")?" selected":""%>>5</option>
-							<option value="4"<%=memo.getImportantScore().equals("4")?" selected":""%>>4</option>
-							<option value="3"<%=memo.getImportantScore().equals("3")?" selected":""%>>3</option>
-							<option value="2"<%=memo.getImportantScore().equals("2")?" selected":""%>>2</option>
-							<option value="1"<%=memo.getImportantScore().equals("1")?" selected":""%>>1</option>
+							<option value="5"
+								<%=memo.getImportantScore().equals("5") ? " selected" : ""%>>5</option>
+							<option value="4"
+								<%=memo.getImportantScore().equals("4") ? " selected" : ""%>>4</option>
+							<option value="3"
+								<%=memo.getImportantScore().equals("3") ? " selected" : ""%>>3</option>
+							<option value="2"
+								<%=memo.getImportantScore().equals("2") ? " selected" : ""%>>2</option>
+							<option value="1"
+								<%=memo.getImportantScore().equals("1") ? " selected" : ""%>>1</option>
 						</select>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						onClick="location.href='main.jsp'">취소</button>
-					<button type="submit" class="btn btn-primary" >수정하기</button>
+					<button type="submit" class="btn btn-primary">수정하기</button>
 				</div>
 			</form>
 		</div>
@@ -103,16 +123,15 @@
 </html>
 
 <script>
+	$(document).ready(function() {
+		// 	$('.btn-primary').click(function() {
+		// 		console.log($('#memoDivideSelect').val());
+		// 		console.log($('#memoDivideInput').val());
+		// 	});
 
-$(document).ready(function() {
-// 	$('.btn-primary').click(function() {
-// 		console.log($('#memoDivideSelect').val());
-// 		console.log($('#memoDivideInput').val());
-// 	});
-	
-// 	$('#memoDivideSelect').change(function() {
-// 		var ss = $('#memoDivideInput').val($('#memoDivideSelect').val());
-// 		console.log(ss.val())
-// 	})
-})
+		// 	$('#memoDivideSelect').change(function() {
+		// 		var ss = $('#memoDivideInput').val($('#memoDivideSelect').val());
+		// 		console.log(ss.val())
+		// 	})
+	})
 </script>

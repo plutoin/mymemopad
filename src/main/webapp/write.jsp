@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page
 	import="java.io.PrintWriter, java.util.ArrayList, java.net.URLEncoder"%>
-<%@ page import="user.*,memo.*"%>
+<%@ page import="memo.*, util.*, tab.*, user.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,9 +31,25 @@
 					<div class="form-group col-sm-4">
 						<label>그룹</label> 
 						<select name="memoDivide" class="form-control">
-							<option value="의류" selected>의류</option>
-							<option value="음식">음식</option>
-							<option value="기타">기타</option>
+							<%
+								String userID = null;
+								if (session.getAttribute("userID") != null) { 	// userID 이름으로 세션이 존재하는 회원들은 
+									userID = (String) session.getAttribute("userID"); // userID에 해당 세션값을 넣어 줌
+								}
+								
+							 	ArrayList<Tab> tabList1 = new TabDAO().getTabNameList(userID);
+						
+								if (tabList1.size() > 0){
+									for (int i = 0; i < tabList1.size(); i++) {
+										Tab tab = tabList1.get(i);
+							%>
+							<option value=<%=tab.getTabName()%>>
+								<%=tab.getTabName()%>
+							</option>
+							<%
+									}
+								}
+							%>
 						</select>
 					</div>
 				</div>
@@ -45,6 +61,11 @@
 					<label>내용</label>
 					<textarea name="memoContent" id = "text" class="form-control" maxlength="2048"
 						style="height: 200px;"></textarea>
+				</div>
+				<div class="form-group">
+					<label>URL</label>
+					<textarea name="memoURL" id = "text" class="form-control" maxlength="1000"
+						style="height: 100px;"></textarea>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-sm-3">
