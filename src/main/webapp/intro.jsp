@@ -62,10 +62,10 @@
 	<footer class="bg-dark mt-4 p-4 text-center" style="color: #FFFFFF;">
 		Copyright &copy; 2021 DCU Capstone Team 04 Rights Reserved.</footer>
 	<!-- jQuery 추가 -->
-	<script src="js/jquery.min.js"></script>
+	<script src="./js/jquery.min.js"></script>
 	<!-- pooper 추가 -->
-	<script src="js/popper.min.js"></script>
+	<script src="./js/popper.js"></script>
 	<!-- bootstrap.js 추가 -->
-	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>ipt>
 </body>
 </html>

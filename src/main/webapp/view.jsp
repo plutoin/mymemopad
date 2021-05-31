@@ -95,7 +95,7 @@
 	<!-- jQuery 추가 -->
 	<script src="./js/jquery.min.js"></script>
 	<!-- pooper 추가 -->
-	<!-- 	<script src="./js/popper.js"></script> -->
+	<script src="./js/popper.js"></script>
 	<!-- bootstrap.js 추가 -->
 	<script src="./js/bootstrap.min.js"></script>
 </body>
