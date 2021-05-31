@@ -19,12 +19,11 @@ request.setCharacterEncoding("UTF-8");
 		return;
 	}
 	
-	
 	String tabName = null;
 	if(request.getParameter("tabName") != null)
 		tabName = request.getParameter("tabName");
 	
-/* 	if(memoDivide == null || memoDivide.equals("")){
+ 	if(tabName == null || tabName.equals("")){
 		// 하나라도 입력 안 된 사항 있을 때
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -33,7 +32,7 @@ request.setCharacterEncoding("UTF-8");
 		script.println("</script>");
 		script.close();
 		return;
-	} */
+	}
 	
 	TabDAO tabDAO = new TabDAO();
 	int result = tabDAO.add(userID, tabName);

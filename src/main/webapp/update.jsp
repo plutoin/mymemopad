@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page
 	import="java.io.PrintWriter, java.util.ArrayList, java.net.URLEncoder"%>
-<%@ page import="user.*,memo.*"%>
+<%@ page import="memo.*, util.*, tab.*, user.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +14,12 @@
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <!-- custom CSS 추가 -->
 <link rel="stylesheet" href="./css/custom.css">
+<link rel="stylesheet" href="./css/fadein.css">
 </head>
 <body>
+    <div class="box">
+      <div class="loader6"></div>
+    </div>
 	<%
 	//로그인한 사람이라면 userID라는 변수에 해당 아이디가 담기고 그렇지 않으면 null값
 	String userID = null;
@@ -40,7 +44,7 @@
 
 	<div class="container">
 		<div class="modal-header">
-			<h5 class="modal-title" id="modal">메모 수정</h5>
+			<h5 class="modal-title" id="modal">📝 메모 수정</h5>
 			<button type="button" class="close" data-dismiss="modal"
 				onClick="location.href='main.jsp'">
 				<span aria-hidden="true">&times;</span>
@@ -50,16 +54,27 @@
 			<form action="updateAction.jsp?memoID=<%=memoID%> " method="post">
 				<div class="form-row">
 					<div class="form-group col-sm-4">
-						<label>그룹</label> <select name="memoDivide" id="memoDivideSelect"
-							class="form-control">
-							<option value="의류"
-								<%=memo.getMemoDivide().equals("의류") ? " selected" : ""%>>의류</option>
-							<option value="음식"
-								<%=memo.getMemoDivide().equals("음식") ? " selected" : ""%>>음식</option>
-							<option value="기타"
-								<%=memo.getMemoDivide().equals("기타") ? " selected" : ""%>>기타</option>
+						<label>그룹</label> 
+						<select name="memoDivide" class="form-control">
+							<%
+							if (session.getAttribute("userID") != null) { // userID 이름으로 세션이 존재하는 회원들은 
+								userID = (String) session.getAttribute("userID"); // userID에 해당 세션값을 넣어 줌
+							}
+
+							ArrayList<Tab> tabList1 = new TabDAO().getTabNameList(userID);
+
+							if (tabList1.size() > 0) {
+								for (int i = 0; i < tabList1.size(); i++) {
+									Tab tab = tabList1.get(i);
+							%>
+							<option value=<%=tab.getTabName()%> selected>
+								<%=tab.getTabName()%>
+							</option>
+							<%
+							}
+							}
+							%>
 						</select>
-						<!-- 						<input id="memoDivideInput" name="memoDivide" hidden="hidden"> -->
 					</div>
 				</div>
 				<div class="form-group">
@@ -118,20 +133,5 @@
 	</div>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
-	<!-- <script src="main.js"></script> -->
 </body>
 </html>
-
-<script>
-	$(document).ready(function() {
-		// 	$('.btn-primary').click(function() {
-		// 		console.log($('#memoDivideSelect').val());
-		// 		console.log($('#memoDivideInput').val());
-		// 	});
-
-		// 	$('#memoDivideSelect').change(function() {
-		// 		var ss = $('#memoDivideInput').val($('#memoDivideSelect').val());
-		// 		console.log(ss.val())
-		// 	})
-	})
-</script>

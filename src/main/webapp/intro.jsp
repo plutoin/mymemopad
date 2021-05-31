@@ -14,22 +14,27 @@
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <!-- custom CSS 추가 -->
 <link rel="stylesheet" href="./css/custom.css">
+<link rel="stylesheet" href="./css/fadein.css">
 </head>
 <body>
+    <div class="box">
+      <div class="loader6"></div>
+    </div>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="main.jsp">My Memopad</a>
+		<a class="navbar-brand" href="main.jsp">
+		<img src="./image/icon.png" style="padding:0px 3px 0px 5px;">My Memopad</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="main.jsp">메인</a>
+				<li class="nav-item active"><a class="nav-link" href="main.jsp">▪ 메인</a>
 				</li>
 				<li class="nav-item active"><a class="nav-link"
-					href="intro.jsp">소개</a></li>
+					href="intro.jsp">▪ 소개</a></li>
 				<li class="nav-item active"><a class="nav-link text-primary"
-					href="userLogout.jsp">로그아웃</a></li>
+					href="userLogout.jsp">▪ 로그아웃</a></li>
 			</ul>
 		</div>
 	</nav>

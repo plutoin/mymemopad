@@ -36,8 +36,6 @@
 	if (request.getParameter("memoID") != null) {
 		memoID = Integer.parseInt(request.getParameter("memoID"));
 	}
-	System.out.println(memoID);
-	
 	if (memoID == 0) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
