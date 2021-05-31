@@ -14,12 +14,16 @@
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <!-- custom CSS 추가 -->
 <link rel="stylesheet" href="./css/custom.css">
+<link rel="stylesheet" href="./css/fadein.css">
 </head>
 <body>
+    <div class="box">
+      <div class="loader6"></div>
+    </div>
 	<!-- 메모 등록하기 화면 구현 -->
 	<div class="container">
 		<div class="modal-header">
-			<h5 class="modal-title" id="modal">메모 등록</h5>
+			<h5 class="modal-title" id="modal">📝 메모 추가</h5>
 			<button type="button" class="close" data-dismiss="modal"
 				onClick="location.href='main.jsp'">
 				<span aria-hidden="true">&times;</span>
@@ -88,22 +92,7 @@
 						</select>
 					</div>
 				</div>
-				<!--<div class="form-group">
-					<label for="InputSubject1">파일첨부</label> <input id="fileInput"
-						filestyle="" type="file" data-class-button="btn btn-default"
-						data-class-input="form-control" data-button-text=""
-						data-icon-name="fa fa-upload" class="form-control" tabindex="-1"
-						style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
-					<div class="bootstrap-filestyle input-group">
-						<input type="text" id="userfile" class="form-control"
-							name="userfile" disabled=""> <span
-							class="group-span-filestyle input-group-btn" tabindex="0">
-							<label for="fileInput" class="btn btn-default"> <span
-								class="glyphicon fa fa-upload"></span>
-						</label>
-						</span>
-					</div>
-				</div>  -->
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						onClick="location.href='main.jsp'">취소</button>
@@ -112,22 +101,7 @@
 			</form>
 		</div>
 	</div>
-	<!-- <script type="text/javascript">
-		$(document).ready(
-				function() {
-					$("#fileInput").on(
-							'change',
-							function() { // 값이 변경되면 
-								if (window.FileReader) { // modern browser 
-									var filename = $(this)[0].files[0].name;
-								} else { // old IE 
-									var filename = $(this).val().split('/')
-											.pop().split('\\').pop(); // 파일명만 추출 
-								} // 추출한 파일명 삽입 
-								$("#userfile").val(filename);
-							});
-				});
-	</script> -->
+
 	<!-- jQuery 추가 -->
 	<script src="./js/jquery.min.js"></script>
 	<!-- pooper 추가 -->

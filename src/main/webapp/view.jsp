@@ -14,8 +14,12 @@
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <!-- custom CSS 추가 -->
 <link rel="stylesheet" href="./css/custom.css">
+<link rel="stylesheet" href="./css/fadein.css">
 </head>
 <body>
+    <div class="box">
+      <div class="loader6"></div>
+    </div>
 	<%
 	//로그인한 사람이라면 userID라는 변수에 해당 아이디가 담기고 그렇지 않으면 null값
 	int memoID = 0;
@@ -34,14 +38,20 @@
 	%>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="main.jsp">My Memopad</a>
+		<a class="navbar-brand" href="main.jsp">
+		<img src="./image/icon.png" style="padding:0px 3px 0px 5px;">My Memopad</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="navbar-nav mr-auto">
-				<a class="button" href="userLogout.jsp">로그아웃</a>
+				<li class="nav-item active"><a class="nav-link" href="main.jsp">▪ 메인</a>
+				</li>
+				<li class="nav-item active"><a class="nav-link"
+					href="intro.jsp">▪ 소개</a></li>
+				<li class="nav-item active"><a class="nav-link text-primary"
+					href="userLogout.jsp">▪ 로그아웃</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -50,12 +60,6 @@
 		<div class="row">
 			<table class="table mt-5"
 				style="text-align: center; border: 1px solid #dddddd">
-				<thead>
-					<tr>
-						<th colspan="3"
-							style="background color: #eeeeee; text-align: center;">메모 보기</th>
-					</tr>
-				</thead>
 				<tbody>
 					<tr>
 						<td style="width: 20%;">제목</td>
@@ -68,7 +72,7 @@
 					<tr>
 						<td>URL</td>
 						<td colspan="2" style="min-height: 200px; text-align: left;">
-							<a href="<%=memo.getMemoURL().replaceAll("\r\n", "<br>")%>">
+							<a href="<%=memo.getMemoURL().replaceAll("\r\n", "<br>")%>" target=”_blank”>
 								<%=memo.getMemoURL().replaceAll("\r\n", "<br>")%>
 							</a>
 						</td>
@@ -83,11 +87,9 @@
 					</tr>
 				</tbody>
 			</table>
-			<a href="main.jsp" class="btn btn-primary">목록</a> <a
-				href="update.jsp?memoID=<%=memo.getMemoID()%>"
-				class="btn btn-primary mx-2">수정</a> <a
-				href="deleteAction.jsp?memoID=<%=memo.getMemoID()%>"
-				class="btn btn-primary" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
+			<a href="main.jsp" class="btn btn-primary">목록</a> 
+			<a href="update.jsp?memoID=<%=memo.getMemoID()%>" class="btn btn-primary mx-2">수정</a> 
+			<a href="deleteAction.jsp?memoID=<%=memo.getMemoID()%>"	class="btn btn-primary" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
 		</div>
 	</div>
 	<!-- jQuery 추가 -->

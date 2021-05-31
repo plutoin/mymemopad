@@ -14,8 +14,12 @@
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <!-- custom CSS 추가 -->
 <link rel="stylesheet" href="./css/custom.css">
+<link rel="stylesheet" href="./css/fadein.css">
 </head>
 <body>
+    <div class="box">
+      <div class="loader6"></div>
+    </div>
 	<%
 	request.setCharacterEncoding("UTF-8"); // 한글 안 깨지도록 설정
 	String memoDivide = "전체";
@@ -50,31 +54,30 @@
 	}
 	%>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="main.jsp">My Memopad</a>
+		<a class="navbar-brand" href="main.jsp">
+		<img src="./image/icon.png" style="padding:0px 3px 0px 5px;">My Memopad</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="main.jsp">메인</a>
+				<li class="nav-item active"><a class="nav-link" href="main.jsp">▪ 메인</a>
 				</li>
 				<li class="nav-item active"><a class="nav-link"
-					href="intro.jsp">소개</a></li>
+					href="intro.jsp">▪ 소개</a></li>
 				<li class="nav-item active"><a class="nav-link text-primary"
-					href="userLogout.jsp">로그아웃</a></li>
+					href="userLogout.jsp">▪ 로그아웃</a></li>
 			</ul>
 		</div>
 	</nav>
-	<section class="container">
+	<div class="container">
 		<form method="get" action="./main.jsp" class="form-inline mt-3">
-			<select name="memoDivide" class="form-control mx-1 mt-2"
-				id="category">
+			<select name="memoDivide" class="form-control mx-1 mt-2" id="category">
 				<!-- 탭 분류  -->
 				<option value="전체">전체</option>
 				<%
 				 	ArrayList<Tab> tabList1 = new TabDAO().getTabNameList(userID);
-			
 					if (tabList1.size() > 0){
 						for (int i = 0; i < tabList1.size(); i++) {
 							Tab tab = tabList1.get(i);
@@ -98,13 +101,12 @@
 				<option value="평가점수순"
 					<%if (searchType.equals("평가점수순"))out.println("selected");%>>평가점수순</option>
 			</select> 
-			<input type="text" name="search" class="form-control mx-1 mt-2"
-				placeholder="내용을 입력하세요." />
+			<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요." />
 
 			<!-- 버튼 -->
 			<button type="submit" class="btn btn-outline-primary mx-1 mt-2">검색</button>
-			<a class="btn btn-primary mx-1 mt-2" href="write.jsp">메모 +</a> <a
-				class="btn btn-primary mx-1 mt-2" data-toggle="modal"
+			<a class="btn btn-primary mx-1 mt-2" href="write.jsp">메모 +</a> 
+			<a class="btn btn-primary mx-1 mt-2" data-toggle="modal"
 				href="#tabModal">카테고리 편집</a>
 		</form>
 
@@ -122,10 +124,10 @@
 
 		<!-- 화면에 보여지는 메모 스타일 -->
 		<!--<div class="card bg-light mt-3">  -->
-		<div class="card bg-light mt-3" style="height: 250px;">
+		<div class="card bg-light mt-3" style="height: 300px; width: auto;">
 			<div class="card-header bg-light">
 				<div class="row">
-					<div class="col-8 text-left"><%=memo.getMemoDivide()%>&nbsp;
+					<div class="col-8 text-left">📂 <%=memo.getMemoDivide()%>&nbsp;
 					</div>
 					<div class="col-4 text-right">
 						평가 <span style="color: red;"><%=memo.getTotalScore()%></span> 중요도
@@ -138,18 +140,16 @@
 					<a href="view.jsp?memoID=<%=memoList.get(i).getMemoID()%>"><%=memoList.get(i).getMemoTitle()%>&nbsp;</a>
 				</h5>
 				<p class="card-text" id="text"><%=memo.getMemoContent().replaceAll("\r\n", "<br>")%></p>
-				<div class="row">
-					<!-- 	<div class="col-12 text-right">
-							<a href="./update.jsp?memoID=<%=memo.getMemoID()%>">수정</a>
-							<a onclick="return confirm('삭제하시겠습니까?')"
-								href="./deleteAction.jsp?memoID=<%=memo.getMemoID()%>">삭제</a> -->
-				</div>
+			</div>
+			<div class="card-footer">📌 <a href="<%=memo.getMemoURL().replaceAll("\r\n", "<br>")%>" target=”_blank”>
+								<%=memo.getMemoURL().replaceAll("\r\n", "<br>")%>
+							</a>
 			</div>
 		</div>
 		<%
 		}
 		%>
-	</section>
+	</div>
 
 	<!-- 카테고리 추가하기 화면 -->
 	<div class="modal fade" id="tabModal" tabindex="-1" role="dialog"
@@ -157,7 +157,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="modal">카테고리 편집</h5>
+					<h5 class="modal-title" id="modal">📂 카테고리 편집</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -190,33 +190,16 @@
 								}
 								%>
 							</select>
-							<!-- 							<select name="tabName" class="form-control">
-							<option value="의류">의류</option>
-							<option value="음식">음식</option>
-							<option value="기타">기타</option>
-							</select> -->
 							<button type="button" class="btn btn-secondary mt-2"
 								data-dismiss="modal">취소</button>
 							<button type="submit" class="btn btn-primary mt-2">삭제</button>
-
-							<%-- DB값 드롭다운으로 부르기	<%
-							for (int i = 0; i < tabList.size(); i++) {
-							%>
-							<select name="tabName" class="form-control">
-								<option value="의류" selected><%=tabList.get(i).getTabName()%>&nbsp;</option>
-							</select>
-							<%
-							}
-							%> --%>
-
-
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<footer class="bg-dark mt-4 p-4 text-center" style="color: #FFFFFF;">
+	<footer class="bg-dark mt-4 p-3 text-center" style="color: #FFFFFF;">
 		Copyright &copy; 2021 DCU Capstone Team 04 Rights Reserved.</footer>
 	<!-- jQuery 추가 -->
 	<script src="js/jquery.min.js"></script>
