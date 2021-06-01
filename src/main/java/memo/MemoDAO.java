@@ -14,7 +14,7 @@ public class MemoDAO {
 
 	// 메모 쓴 것 DB에 저장하는 함수
 	public int write (Memo memo) {	
-		String sql = "INSERT INTO MEMOTABLE VALUES(NULL, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO MEMOTABLE VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -25,6 +25,7 @@ public class MemoDAO {
 			pstmt.setString(5, memo.getTotalScore().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
 			pstmt.setString(6, memo.getImportantScore().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
 			pstmt.setString(7, memo.getMemoURL().replaceAll("<", "&lt;").replaceAll(">", "&gt;"));
+			pstmt.setString(8, memo.getMemoImg().replaceAll("<", "&lt;").replaceAll(">", "&gt;"));
 			return pstmt.executeUpdate();
 		} catch(Exception e) {	// 예외 처리
 			e.printStackTrace();
@@ -72,8 +73,9 @@ public class MemoDAO {
 						rs.getString(5),
 						rs.getString(6),
 						rs.getString(7),
-						rs.getString(8)
-				);
+						rs.getString(8),
+						rs.getString(9)
+					);
 				memoList.add(memo);
 			}
 		} catch(Exception e) {
@@ -158,6 +160,7 @@ public class MemoDAO {
 				memo.setTotalScore(rs.getString(6));
 				memo.setImportantScore(rs.getString(7));
 				memo.setMemoURL(rs.getString(8));
+				memo.setMemoImg(rs.getString(9));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -197,7 +200,7 @@ public class MemoDAO {
 	// 수정 함수
 	public int update(Memo memo) {
 		// 특정 memoID에 해당하는 내용 바꾸기
-		String sql = "UPDATE MEMOTABLE SET memoTitle = ?, memoContent = ?, memoDivide = ?, totalScore = ?, importantScore = ?, memoURL = ? WHERE memoID = ?;";
+		String sql = "UPDATE MEMOTABLE SET memoTitle = ?, memoContent = ?, memoDivide = ?, totalScore = ?, importantScore = ?, memoURL = ?, memoImg = ? WHERE memoID = ?;";
 		try {
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -208,7 +211,8 @@ public class MemoDAO {
 			pstmt.setString(4, memo.getTotalScore()); 
 			pstmt.setString(5, memo.getImportantScore());
 			pstmt.setString(6, memo.getMemoURL());
-			pstmt.setInt(7, memo.getMemoID()); // 게시글 번호
+			pstmt.setString(7, memo.getMemoImg());
+			pstmt.setInt(8, memo.getMemoID()); // 게시글 번호
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

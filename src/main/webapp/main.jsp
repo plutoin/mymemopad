@@ -17,9 +17,6 @@
 <link rel="stylesheet" href="./css/fadein.css">
 </head>
 <body>
-    <div class="box">
-      <div class="loader6"></div>
-    </div>
 	<%
 	request.setCharacterEncoding("UTF-8"); // 한글 안 깨지도록 설정
 	String memoDivide = "전체";
@@ -123,8 +120,7 @@
 		%>
 
 		<!-- 화면에 보여지는 메모 스타일 -->
-		<!--<div class="card bg-light mt-3">  -->
-		<div class="card bg-light mt-3" style="height: 300px; width: auto;">
+		<div class="card bg-light mt-3" style="height: auto;">
 			<div class="card-header bg-light">
 				<div class="row">
 					<div class="col-8 text-left">📂 <%=memo.getMemoDivide()%>&nbsp;
@@ -139,7 +135,13 @@
 				<h5 class="card-title">
 					<a href="view.jsp?memoID=<%=memoList.get(i).getMemoID()%>"><%=memoList.get(i).getMemoTitle()%>&nbsp;</a>
 				</h5>
-				<p class="card-text" id="text"><%=memo.getMemoContent().replaceAll("\r\n", "<br>")%></p>
+				<div class="row">
+					<p class="card-text col-sm-8" id="text"><%=memo.getMemoContent().replaceAll("\r\n", "<br>")%></p>
+					<div class="row col-sm-4">
+						<img src="<%=memo.getMemoImg()%>" style="width:150px; height: auto;">
+					</div>
+				</div>
+
 			</div>
 			<div class="card-footer">📌 <a href="<%=memo.getMemoURL().replaceAll("\r\n", "<br>")%>" target=”_blank”>
 								<%=memo.getMemoURL().replaceAll("\r\n", "<br>")%>
@@ -202,10 +204,10 @@
 	<footer class="bg-dark mt-4 p-3 text-center" style="color: #FFFFFF;">
 		Copyright &copy; 2021 DCU Capstone Team 04 Rights Reserved.</footer>
 	<!-- jQuery 추가 -->
-	<script src="js/jquery.min.js"></script>
+	<script src="./js/jquery.min.js"></script>
 	<!-- pooper 추가 -->
-	<script src="js/popper.min.js"></script>
+	<script src="./js/popper.js"></script>
 	<!-- bootstrap.js 추가 -->
-	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
 </body>
 </html>

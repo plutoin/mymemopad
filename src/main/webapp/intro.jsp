@@ -17,9 +17,6 @@
 <link rel="stylesheet" href="./css/fadein.css">
 </head>
 <body>
-    <div class="box">
-      <div class="loader6"></div>
-    </div>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="main.jsp">
 		<img src="./image/icon.png" style="padding:0px 3px 0px 5px;">My Memopad</a>
@@ -62,10 +59,10 @@
 	<footer class="bg-dark mt-4 p-4 text-center" style="color: #FFFFFF;">
 		Copyright &copy; 2021 DCU Capstone Team 04 Rights Reserved.</footer>
 	<!-- jQuery 추가 -->
-	<script src="js/jquery.min.js"></script>
+	<script src="./js/jquery.min.js"></script>
 	<!-- pooper 추가 -->
-	<script src="js/popper.min.js"></script>
+	<script src="./js/popper.js"></script>
 	<!-- bootstrap.js 추가 -->
-	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>ipt>
 </body>
 </html>
