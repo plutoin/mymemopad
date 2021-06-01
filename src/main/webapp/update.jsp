@@ -17,9 +17,6 @@
 <link rel="stylesheet" href="./css/fadein.css">
 </head>
 <body>
-    <div class="box">
-      <div class="loader6"></div>
-    </div>
 	<%
 	//로그인한 사람이라면 userID라는 변수에 해당 아이디가 담기고 그렇지 않으면 null값
 	String userID = null;
@@ -51,7 +48,7 @@
 			</button>
 		</div>
 		<div class="modal-body">
-			<form action="updateAction.jsp?memoID=<%=memoID%> " method="post">
+			<form action="updateAction.jsp?memoID=<%=memoID%>" method="post">
 				<div class="form-row">
 					<div class="form-group col-sm-4">
 						<label>그룹</label> 
@@ -88,7 +85,12 @@
 						style="height: 200px;"><%=memo.getMemoContent().replaceAll("<br>", "\r\n")%></textarea>
 				</div>
 				<div class="form-group">
-					<label>내용</label>
+					<label>이미지 링크</label>
+					<textarea name="memoImg" class="form-control" maxlength="2048"
+						style="height: 100px;"><%=memo.getMemoImg()%></textarea>
+				</div>
+				<div class="form-group">
+					<label>URL</label>
 					<textarea name="memoURL" class="form-control" maxlength="1000"
 						style="height: 100px;"><%=memo.getMemoURL().replaceAll("<br>", "\r\n")%></textarea>
 				</div>

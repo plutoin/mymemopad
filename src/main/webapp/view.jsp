@@ -17,9 +17,6 @@
 <link rel="stylesheet" href="./css/fadein.css">
 </head>
 <body>
-    <div class="box">
-      <div class="loader6"></div>
-    </div>
 	<%
 	//로그인한 사람이라면 userID라는 변수에 해당 아이디가 담기고 그렇지 않으면 null값
 	int memoID = 0;
@@ -63,15 +60,22 @@
 				<tbody>
 					<tr>
 						<td style="width: 20%;">제목</td>
-						<td colspan="2"><%=memo.getMemoTitle()%></td>
+						<td colspan="3"><%=memo.getMemoTitle()%></td>
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td colspan="2" style="min-height: 200px; text-align: left;"><%=memo.getMemoContent().replaceAll("\r\n", "<br>")%></td>
+						<td colspan="3" style="min-height: 200px; text-align: left;"><%=memo.getMemoContent().replaceAll("\r\n", "<br>")%></td>
+					</tr>
+					<tr>
+					<tr>
+						<td>이미지</td>
+						<td colspan="3" style="min-height: 200px; text-align: left;">
+							<img src="<%=memo.getMemoImg()%>" style="width:200px; height: auto;">
+						</td>
 					</tr>
 					<tr>
 						<td>URL</td>
-						<td colspan="2" style="min-height: 200px; text-align: left;">
+						<td colspan="3" style="min-height: 200px; text-align: left;">
 							<a href="<%=memo.getMemoURL().replaceAll("\r\n", "<br>")%>" target=”_blank”>
 								<%=memo.getMemoURL().replaceAll("\r\n", "<br>")%>
 							</a>
@@ -79,11 +83,11 @@
 					</tr>
 					<tr>
 						<td>평가</td>
-						<td colspan="2" style="text-align: left;"><%=memo.getTotalScore()%></td>
+						<td colspan="3" style="text-align: left;"><%=memo.getTotalScore()%></td>
 					</tr>
 					<tr>
 						<td>중요도</td>
-						<td colspan="2" style="text-align: left;"><%=memo.getImportantScore()%></td>
+						<td colspan="3" style="text-align: left;"><%=memo.getImportantScore()%></td>
 					</tr>
 				</tbody>
 			</table>

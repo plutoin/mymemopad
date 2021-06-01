@@ -17,9 +17,6 @@
 <link rel="stylesheet" href="./css/fadein.css">
 </head>
 <body>
-    <div class="box">
-      <div class="loader6"></div>
-    </div>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="main.jsp">
 		<img src="./image/icon.png" style="padding:0px 3px 0px 5px;">My Memopad</a>

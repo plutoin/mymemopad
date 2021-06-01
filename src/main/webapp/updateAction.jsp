@@ -50,6 +50,7 @@
 	String totalScore = null;
 	String importantScore = null;
 	String memoURL = null;
+	String memoImg = null;
 	
 	if(request.getParameter("memoDivide") != null)
 		memoDivide = request.getParameter("memoDivide");
@@ -63,6 +64,8 @@
 		importantScore = request.getParameter("importantScore");
 	if(request.getParameter("memoURL") != null)
 		memoURL = request.getParameter("memoURL");
+	if(request.getParameter("memoImg") != null)
+		memoImg = request.getParameter("memoImg");
 	
 	if(memoTitle == null || memoContent == null || totalScore == null || importantScore == null ||  memoTitle.equals("") || memoContent.equals("")) {
 		// 하나라도 입력 안 된 사항 있을 때(memoTitle memoContent는 공백이 있을 경우로 조건 걺)
@@ -83,7 +86,7 @@
 		script.println("location.href = 'main.jsp'");
 		script.println("</script>");
 	} else {
-		Memo memo = new Memo(memoID, userID, memoDivide, memoTitle, memoContent, totalScore, importantScore, memoURL);
+		Memo memo = new Memo(memoID, userID, memoDivide, memoTitle, memoContent, totalScore, importantScore, memoURL, memoImg);
 		MemoDAO memoDAO = new MemoDAO();
 		int result = memoDAO.update(memo);
 		if (result == -1) {		// DB 오류
