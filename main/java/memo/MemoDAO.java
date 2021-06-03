@@ -204,7 +204,6 @@ public class MemoDAO {
 		try {
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
-//			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, memo.getMemoTitle()); // 게시글 제목
 			pstmt.setString(2, memo.getMemoContent()); // 게시글 내용
 			pstmt.setString(3, memo.getMemoDivide()); // 게시글 분류

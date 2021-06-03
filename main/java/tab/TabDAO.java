@@ -139,8 +139,6 @@ public class TabDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userID);
 			rs = pstmt.executeQuery();
-//			if(rs.next())
-//				return rs.getString(1);
 			while(rs.next()) {
 				Tab tab = new Tab();
 				tab.setTabName(rs.getString(1));

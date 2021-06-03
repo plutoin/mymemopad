@@ -104,13 +104,4 @@ public class Memo {
 	public void setMemoImg(String memoImg) {
 		this.memoImg = memoImg;
 	}
-
-	/* @Override
-	public String toString() {
-		return "Memo [memoID=" + memoID + ", userID=" + userID + ", memoDivide=" + memoDivide + ", memoTitle="
-				+ memoTitle + ", memoContent=" + memoContent + ", totalScore=" + totalScore + ", importantScore="
-				+ importantScore + "]";
-	}
-
-	*/
 }

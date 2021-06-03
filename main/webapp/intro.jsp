@@ -39,7 +39,7 @@
 		<div class="row">
 			<div class="card" style="text-align:center; float:none; margin:auto">
 				<div class="card-body">
-				<img src="./image/dcu_1.jpg" class="card-img-top" style="border: 10px;"/>
+				<img src="./image/dcu.jpg" class="card-img-top" style="border: 10px;"/>
 					<h4>Info</h4>
 					<h5>나만의 필요한 정보를 모아 두는 다용도 메모장</h5>
 					<p class="card-text">평소에 웹 사이트를 통해서 원하는 정보를 따로 저장해 관리해 주는 곳이
@@ -51,7 +51,6 @@
 					<h5>캡스톤디자인 4조 취업시켜조</h5>
 					<p class="card-text">사이버보안전공 17 권 세 연<br> 사이버보안전공 18 배 채 윤<br>
 					컴퓨터공학전공 18 장 소 연<br> 컴퓨터공학전공 18 김 민 승 </p>
-					<!-- <img src="./image/dcu.png" class="card-img-top" style="align:center; width: 700px; display : block; margin : auto;"/> -->
 				</div>
 			</div>
 		</div>
