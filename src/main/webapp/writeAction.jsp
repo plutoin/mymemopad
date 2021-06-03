@@ -56,14 +56,6 @@ request.setCharacterEncoding("UTF-8");
 	
 	MemoDAO memoDAO = new MemoDAO();
 	int result = memoDAO.write(new Memo(0, userID, memoDivide, memoTitle, memoContent, totalScore, importantScore, memoURL, memoImg));
-	System.out.println(userID);
-	System.out.println(memoDivide);
-	System.out.println(memoTitle);
-	System.out.println(memoContent);
-	System.out.println(totalScore);
-	System.out.println(importantScore);
-	System.out.println(memoURL);
-	System.out.println(memoImg);
 	if(result == -1) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
