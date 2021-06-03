@@ -16,9 +16,6 @@
 <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <div class="box">
-      <div class="loader6"></div>
-    </div>
 	<%
 	String userID = null;
 	if (session.getAttribute("userID") != null) {

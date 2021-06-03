@@ -3,8 +3,6 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="memo.*, util.*"%>
 
-<!-- 메모 등록하는 페이지 -->
-
 <%
 request.setCharacterEncoding("UTF-8");
 	String userID = null;
@@ -27,6 +25,7 @@ request.setCharacterEncoding("UTF-8");
 	String totalScore = null;
 	String importantScore = null;
 	String memoURL = null;
+	String memoImg = null;
 	
 	if(request.getParameter("memoDivide") != null)
 		memoDivide = request.getParameter("memoDivide");
@@ -40,6 +39,9 @@ request.setCharacterEncoding("UTF-8");
 		importantScore = request.getParameter("importantScore");
 	if(request.getParameter("memoURL") != null)
 		memoURL = request.getParameter("memoURL");
+	if(request.getParameter("memoImg") != null)
+		memoImg = request.getParameter("memoImg");
+	
 	
 	if(memoTitle == null || memoContent == null || totalScore == null || importantScore == null ||  memoTitle.equals("") || memoContent.equals("")) {
 		// 하나라도 입력 안 된 사항 있을 때(memoTitle memoContent는 공백이 있을 경우로 조건 걺)
@@ -53,7 +55,7 @@ request.setCharacterEncoding("UTF-8");
 	}
 	
 	MemoDAO memoDAO = new MemoDAO();
-	int result = memoDAO.write(new Memo(0, userID, memoDivide, memoTitle, memoContent, totalScore, importantScore, memoURL));
+	int result = memoDAO.write(new Memo(0, userID, memoDivide, memoTitle, memoContent, totalScore, importantScore, memoURL, memoImg));
 	if(result == -1) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");

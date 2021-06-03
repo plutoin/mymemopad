@@ -17,9 +17,6 @@
 <link rel="stylesheet" href="./css/fadein.css">
 </head>
 <body>
-    <div class="box">
-      <div class="loader6"></div>
-    </div>
 	<!-- 메모 등록하기 화면 구현 -->
 	<div class="container">
 		<div class="modal-header">
@@ -67,6 +64,11 @@
 						style="height: 200px;"></textarea>
 				</div>
 				<div class="form-group">
+					<label>이미지 링크</label>
+					<textarea name="memoImg" id = "text" class="form-control" maxlength="2048"
+						style="height: 100px;"></textarea>
+				</div>
+				<div class="form-group">
 					<label>URL</label>
 					<textarea name="memoURL" id = "text" class="form-control" maxlength="1000"
 						style="height: 100px;"></textarea>
@@ -101,7 +103,6 @@
 			</form>
 		</div>
 	</div>
-
 	<!-- jQuery 추가 -->
 	<script src="./js/jquery.min.js"></script>
 	<!-- pooper 추가 -->
