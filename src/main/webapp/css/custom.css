@@ -1,8 +1,5 @@
 @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
-
-@import
-	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
-	;
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
 .navbar-brand, h1, h2, h3, h4 {
 	font-family: 'Jeju Gothic';
@@ -16,6 +13,7 @@ h5 {
 body {
 	font-family: 'Nanum Gothic';
 }
+
 /* .card {
 	word-wrap: break-word;
 	text-overflow: ellipsis;
