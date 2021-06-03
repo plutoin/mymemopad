@@ -9,13 +9,14 @@ public class Memo {
 	String totalScore;	// 점수
 	String importantScore;	// 중요도
 	String memoURL;
+	String memoImg;
 	
 	public Memo() {
 		
 	}
 	
 	public Memo(int memoID, String userID, String memoDivide, String memoTitle, String memoContent,
-			String totalScore, String importantScore, String memoURL) {
+			String totalScore, String importantScore, String memoURL, String memoImg) {
 		super();
 		this.memoID = memoID;
 		this.userID = userID;
@@ -25,6 +26,7 @@ public class Memo {
 		this.totalScore = totalScore;
 		this.importantScore = importantScore;
 		this.memoURL = memoURL;
+		this.memoImg = memoImg;
 	}
 	
 	public Memo(String userID) {
@@ -95,14 +97,11 @@ public class Memo {
 		this.memoURL = memoURL;
 	}
 	
-	
-
-	@Override
-	public String toString() {
-		return "Memo [memoID=" + memoID + ", userID=" + userID + ", memoDivide=" + memoDivide + ", memoTitle="
-				+ memoTitle + ", memoContent=" + memoContent + ", totalScore=" + totalScore + ", importantScore="
-				+ importantScore + "]";
+	public String getMemoImg() {
+		return memoImg;
 	}
 
-	
+	public void setMemoImg(String memoImg) {
+		this.memoImg = memoImg;
+	}
 }
