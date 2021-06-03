@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>강의평가 웹 사이트</title>
+<title>My Memopad</title>
 <!-- bootstrap CSS 추가 -->
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <!-- custom CSS 추가 -->
