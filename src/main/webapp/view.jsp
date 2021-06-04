@@ -36,7 +36,7 @@
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="main.jsp">
-		<img src="./image/icon.png" style="padding:0px 3px 0px 5px;">My Memopad</a>
+		<img src="./image/icon1.png" style="padding:0px 3px 0px 5px;">My Memopad</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbar">
 			<span class="navbar-toggler-icon"></span>
@@ -58,6 +58,11 @@
 			<table class="table mt-5"
 				style="text-align: center; border: 1px solid #dddddd">
 				<tbody>
+				<tr>
+						<td style="width: 20%;">분류</td>
+						<td colspan="3"><%=memo.getMemoDivide()%></td>
+					</tr>
+					<tr>
 					<tr>
 						<td style="width: 20%;">제목</td>
 						<td colspan="3"><%=memo.getMemoTitle()%></td>
