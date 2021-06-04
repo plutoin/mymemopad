@@ -59,16 +59,19 @@
 							}
 
 							ArrayList<Tab> tabList1 = new TabDAO().getTabNameList(userID);
-
+							
 							if (tabList1.size() > 0) {
 								for (int i = 0; i < tabList1.size(); i++) {
 									Tab tab = tabList1.get(i);
 							%>
-							<option value=<%=tab.getTabName()%> selected>
+							<option value=<%=tab.getTabName()%> 
+								<%if(memo.getMemoDivide().equals(tab.getTabName())) {
+									out.println("selected");
+								}%>>
 								<%=tab.getTabName()%>
 							</option>
 							<%
-							}
+								}
 							}
 							%>
 						</select>
