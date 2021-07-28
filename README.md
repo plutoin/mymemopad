@@ -24,6 +24,19 @@
 
 🌱 **스킬 및 사용 툴**
 
+![JSP](https://img.shields.io/badge/JSP-007396.svg?style=for-the-badge&logo=java&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![Eclipse](https://img.shields.io/badge/Eclipse-FE7A16.svg?style=for-the-badge&logo=Eclipse&logoColor=white)
+![Tomcat](https://img.shields.io/badge/Tomcat-%232B2F33.svg?style=for-the-badge&logo=ApacheTomcat&logoColor=F8DC75)
+
+
 `HTML5` `css3` `Bootstrap`: 시각적인 디자인 설계, 반응형 웹으로 제작  
 `JavaScript` `jQuery`: 회원가입 시 유효성 검사 기능  
 `JSP`: 구축된 데이터베이스와 웹 서버의 동기화  
@@ -67,4 +80,4 @@
 
 >   소개 페이지
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/996af592-2f14-456f-90a0-9fe9c86b282d/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210725%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210725T171011Z&X-Amz-Expires=86400&X-Amz-Signature=192b7e55589c1f2ec0edc5bd93cf165f63c7b330ced8ce4904aa8920e47ddf59&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22" width="300px" />
+<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/996af592-2f14-456f-90a0-9fe9c86b282d/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210728%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210728T183824Z&X-Amz-Expires=86400&X-Amz-Signature=c3496ac637f0eae79e09088fbc1744a099ddf68550de4cafac7913673d393911&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22" width="300px" />
