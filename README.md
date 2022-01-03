@@ -55,24 +55,24 @@
 
 - 사용자가 다른 페이지와 나란히 두고 사용하며 편하게 작성할 수 있도록 반응형으로 디자인하기 위해 부트스트랩 사용
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/05bae759-c141-4f3f-9ea5-c8705b2a2e41/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210729%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210729T182241Z&X-Amz-Expires=86400&X-Amz-Signature=05e893577c5e826e521de4f360a7605d4a8c72c2594232bce2a2ff6ee547c8aa&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22" width="300px" />
+<img src="https://user-images.githubusercontent.com/66389585/147905746-bfd23edc-c94b-46f0-94b4-583d599e44fe.png" width="300px" />
 
 
 #### 메모 보기 화면
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/54bab6b9-78ea-4736-8331-a2508bf37dc2/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210729%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210729T182303Z&X-Amz-Expires=86400&X-Amz-Signature=56f62678408d564856358106f781fefeff39af2feaf837c4e6de6e722bc9de2e&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22" width="300px" />
+<img src="https://user-images.githubusercontent.com/66389585/147905767-fd2b13a4-0d20-413c-ba29-c6bdd60ddb5e.png" width="300px" />
 
 
 #### 카테고리 모달 화면
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a91749f9-ef5e-4514-b0b2-41d25e477708/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210729%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210729T182318Z&X-Amz-Expires=86400&X-Amz-Signature=2cbac8dd8319a0fac0564f617ede103ff8a42229e20fdbddb679a80921b0d8d3&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22" width="300px" />
+<img src="https://user-images.githubusercontent.com/66389585/147905779-84990adb-b16a-4dcd-8581-4449a99614bd.png" width="300px" />
 
 
 #### 메모 추가 화면
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/f2591cb3-520c-40e3-a873-e5ecd51f53e6/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210729%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210729T182336Z&X-Amz-Expires=86400&X-Amz-Signature=9dadaf4995d1ad82b6b9bc99ae2121d557c8703fa29a68fe448a173444250c9b&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22" width="300px" />
+<img src="https://user-images.githubusercontent.com/66389585/147905785-89266f97-33f5-411e-b5fe-6690d429821f.png" width="300px" />
 
 
 #### 소개 페이지
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/996af592-2f14-456f-90a0-9fe9c86b282d/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210728%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210728T183824Z&X-Amz-Expires=86400&X-Amz-Signature=c3496ac637f0eae79e09088fbc1744a099ddf68550de4cafac7913673d393911&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22" width="300px" />
+<img src="https://user-images.githubusercontent.com/66389585/147905792-fb45b479-7528-4c56-affc-be8be5787b86.png" width="300px" />
