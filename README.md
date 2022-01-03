@@ -46,33 +46,33 @@
 
 ## 🖌️ UI
 
-#### 로그인 & 회원가입 화면
+### 로그인 & 회원가입 화면
 
 <img src="https://cdn.discordapp.com/attachments/838470575566880792/868908514704257044/image0.png" width="600px" />
 
 
-#### 메인 화면
+### 메인 화면
 
 - 사용자가 다른 페이지와 나란히 두고 사용하며 편하게 작성할 수 있도록 반응형으로 디자인하기 위해 부트스트랩 사용
 
 <img src="https://user-images.githubusercontent.com/66389585/147905746-bfd23edc-c94b-46f0-94b4-583d599e44fe.png" width="400px" />
 
 
-#### 메모 보기 화면
+### 메모 보기 화면
 
 <img src="https://user-images.githubusercontent.com/66389585/147905767-fd2b13a4-0d20-413c-ba29-c6bdd60ddb5e.png" width="400px" />
 
 
-#### 카테고리 모달 화면
+### 카테고리 모달 화면
 
 <img src="https://user-images.githubusercontent.com/66389585/147905779-84990adb-b16a-4dcd-8581-4449a99614bd.png" width="400px" />
 
 
-#### 메모 추가 화면
+### 메모 추가 화면
 
 <img src="https://user-images.githubusercontent.com/66389585/147905785-89266f97-33f5-411e-b5fe-6690d429821f.png" width="400px" />
 
 
-#### 소개 페이지
+### 소개 페이지
 
 <img src="https://user-images.githubusercontent.com/66389585/147905792-fb45b479-7528-4c56-affc-be8be5787b86.png" width="400px" />
